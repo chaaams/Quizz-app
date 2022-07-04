@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Text, TouchableOpacity, View , StyleSheet} from 'react-native';
+import { Text, TouchableOpacity, View , StyleSheet, ActivityIndicator} from 'react-native';
 
 const shuffleArray = (array)=> {
     for (let i = array.length - 1; i > 0; i--) {
@@ -14,13 +14,16 @@ const Quizz = ({navigation}) =>{
     const [question,setQuestion] = useState(0);
     const [options,setOptions] = useState([]);
     const [score, setScore] = useState(0);
+    const [isLoading, setIsLoading] = useState(false)
 
     const getQuiz = async ()=>{
+        setIsLoading(true);
         const URL = 'https://opentdb.com/api.php?amount=10&category=21&difficulty=medium&type=multiple&encode=url3986';
         const res = await fetch(URL);
         const data = await res.json();
         setQuestions(data.results);
-        setOptions(generateOptionsAndShuffle(data.results[0]))
+        setOptions(generateOptionsAndShuffle(data.results[0]));
+        setIsLoading(false)
 
     };
     
@@ -64,7 +67,9 @@ const Quizz = ({navigation}) =>{
 
     return(
         <View style={styles.container}>
-            {questions&& (
+            {isLoading?<View style={styles.loader}>
+                <ActivityIndicator size="large" />
+            </View>:questions&& (
             <View style={styles.parent}>
             <View style={styles.top}>
                 <Text style={styles.question}>{decodeURIComponent( questions[question].question)}</Text>
@@ -158,6 +163,12 @@ const styles = StyleSheet.create({
         borderRadius:12,
     },
     parent:{
+        height:'100%'
+    },
+    loader:{
+        display:'flex',
+        justifyContent:'center',
+        alignItems:'center',
         height:'100%'
     }
 

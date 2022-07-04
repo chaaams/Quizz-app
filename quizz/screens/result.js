@@ -3,8 +3,7 @@ import { Text, View , StyleSheet, Image, TouchableOpacity} from 'react-native';
 import Title from '../components/title';
 
 const Result = ({navigation, route}) =>{
-    const {score} = route.params
-   
+    const {score} = route.params;
     const resultBanner = score>5? 'https://cdni.iconscout.com/illustration/premium/thumb/businessman-with-victory-trophy-4819004-4010292.png' :'https://cdni.iconscout.com/illustration/premium/thumb/payment-failure-4320184-3598819.png'
     
     return(

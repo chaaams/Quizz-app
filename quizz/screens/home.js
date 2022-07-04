@@ -7,7 +7,7 @@ const Home = ({navigation}) =>{
     
     return(
         <View style={styles.container}>
-            <Title titleText='The fameux Quiz'/>
+            <Title titleText='The Quizzz'/>
             <View>
                 <Image 
                 style={styles.logo}
