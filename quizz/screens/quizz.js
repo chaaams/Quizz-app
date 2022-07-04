@@ -94,9 +94,9 @@ const Quizz = ({navigation}) =>{
             </View>
 
             <View style={styles.buttons}>
-            <TouchableOpacity style={styles.button}>
+            {question ===1 && <TouchableOpacity style={styles.button}>
                     <Text style={styles.buttonText} onPress={handlePrevQuestion}>PREV</Text>
-                </TouchableOpacity>
+                </TouchableOpacity>}
 
                 {question !==9 && <TouchableOpacity style={styles.button} onPress={handleNextQuestion}>
                     <Text style={styles.buttonText}>NEXT</Text>
